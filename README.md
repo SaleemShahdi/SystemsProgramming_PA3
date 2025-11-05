@@ -1,3 +1,9 @@
+My submitted code is in detect_dups.c and detect_dups.h
+
+My submitted makefile is in makefile
+
+Assignment description is in Project 3 Description.pdf and included below for convenience:
+
 <p align = "center"><strong>CS 214 Programming Assignment 3</strong></p>
 
 <p align = "center"><strong>File Duplicate Detector (100 points)</strong></p>
@@ -95,7 +101,7 @@ You could use the following template for printf,
 ```
 **Error Handling:**
 
-You can use fprintf and stderr to handle errors.
+You can use `fprintf` and `stderr` to handle errors.
 
 **Standard Error Messages:**
 
