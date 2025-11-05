@@ -42,41 +42,41 @@ File <number>:
 
     Soft Link <number>(<reference count>): <Inode number>
 
-      Paths: <Path 1>
+        Paths: <Path 1>
 
-        ...
+            ...
 
-        <Path N>
+           <Path N>
 ```
 
 `File <number>`: This represents a unique file. For example, if file1.txt and file2.txt contain the exact contents, they will appear under `File n`; however, if they contain different contents, they will appear under `File n` and `File n+1`.
 
-Hard Link: This represents a unique inode number. For example, if file1.txt and file2.txt were created by the user with the same contents, they would have different inode numbers. However, if they are hard links pointing to the same inode number, the reference count would increase, and both files would be under the same inode number.
+`Hard Link`: This represents a unique inode number. For example, if file1.txt and file2.txt were created by the user with the same contents, they would have different inode numbers. However, if they are hard links pointing to the same inode number, the reference count would increase, and both files would be under the same inode number.
 
 Different Inode Number,
+```
+  Hard Link (1): 38974691
 
-Hard Link (1): 38974691
+  Paths: file1.txt
 
-Paths: file1.txt
+  Hard Link (1): 28736422
 
-Hard Link (1): 28736422
-
-Paths: file1.txt
-
+  Paths: file1.txt
+```
 Same Inode Number - reference count increased,
+```
+  Hard Link (2): 38974691
 
-Hard Link (2): 38974691
+  Paths: file1.txt
 
-Paths: file1.txt
+         file2.txt
+```
+`Soft Link`: This represents a link to a unique “Path.” Since a soft link is unique to each file, it will be under each `Hard Link`. There could be multiple soft links, and each soft link could contain a hard link.
 
-file2.txt
-
-Soft Link: This represents a link to a unique “Path.” Since a soft link is unique to each file, it will be under each Hard Link. There could be multiple soft links, and each soft link could contain a hard link.
-
-Paths: This represents the path in which your hard or soft links exist.
+`Paths`: This represents the path in which your hard or soft links exist.
 
 You could use the following template for printf,
-
+```
 "File <number>:"
 
 "\\tMD5 Hash: <hash>"
@@ -92,7 +92,7 @@ You could use the following template for printf,
 "\\t\\t\\t\\tPaths:\\t<Path 1>"
 
 "\\t\\t\\t\\t\\t<Path N>"
-
+```
 **Error Handling:**
 
 You can use fprintf and stderr to handle errors.
@@ -101,59 +101,58 @@ You can use fprintf and stderr to handle errors.
 
 If no directory is given, print the following error message, and exit with the text “failure”.
 
-Usage: ./detect\_dups <directory>
+`Usage: ./detect_dups <directory>`
 
 If an incorrect directory was given, exit with the text “failure”.
 
-Error <error number>: <directory> is not a valid directory
+`Error <error number>: <directory> is not a valid directory`
 
 **Sample Output:**
-
+```
 File 1
 
-MD5 Hash: e711f198c6af16d1d13c99f030173add
+      MD5 Hash: e711f198c6af16d1d13c99f030173add
 
-Hard Link (2): 409929280
+      Hard Link (2): 409929280
 
-Paths: file1.txt
+              Paths: file1.txt
 
-file1h.txt
+                     file1h.txt
 
-Soft Link 1(1): 409929290
+              Soft Link 1(1): 409929290
 
-Paths: file1s.txt
+                       Paths: file1s.txt
 
-Soft Link 2(1): 409929374
+              Soft Link 2(1): 409929374
 
-Paths: file1hs.txt
+                       Paths: file1hs.txt
 
-Hard Link (1): 409929281
+      Hard Link (1): 409929281
 
-Paths: file2.txt
-
-  
+              Paths: file2.txt
 
 File 2
 
-MD5 Hash: 4fe82b0e520f6c2ff023c3e41f6b5c70
+      MD5 Hash: 4fe82b0e520f6c2ff023c3e41f6b5c70
 
-Hard Link (3): 409929098
+      Hard Link (3): 409929098
 
-Paths: file3.txt
+              Paths: file3.txt
 
-file3h.txt
+                     file3h.txt
 
-file4.txt
+                     file4.txt
 
-Soft Link 1(1): 409929270
+              Soft Link 1(1): 409929270
 
-Paths: file3s.txt
+                       Paths: file3s.txt
 
-file3hs.txt
+                              file3hs.txt
 
-Soft Link 2(1): 409929490
+              Soft Link 2(1): 409929490
 
-Paths: file4s.txt
+                       Paths: file4s.txt
+```
 
   
 
@@ -161,11 +160,11 @@ Paths: file4s.txt
 
 Executable followed by the directory,
 
-./detect\_dups <dir>
+`./detect_dups <dir>`
 
 Example,
 
-./detect\_dups test1
+`./detect_dups test1`
 
 **Submission Requirements:**
 
